@@ -28,21 +28,26 @@ public class FileServiceImpl implements FileService {
     public String uploadFile(String base64, String fileType) {
 
         try {
-            // 🔷 Decode Base64
+            // 🔥 FIX: remove base64 prefix if present
+            if (base64.contains(",")) {
+                base64 = base64.split(",")[1];
+            }
+
             byte[] decoded = Base64.getDecoder().decode(base64);
 
-            // 🔷 Create temp file
             File file = File.createTempFile("emp_", "." + fileType);
             Files.write(file.toPath(), decoded);
 
             String batchId = UUID.randomUUID().toString();
 
-            // 🔷 Pass parameters to batch
             JobParameters params = new JobParametersBuilder()
                     .addString("filePath", file.getAbsolutePath())
                     .addString("batchId", batchId)
+                    .addString("fileType", fileType)
                     .addLong("time", System.currentTimeMillis())
                     .toJobParameters();
+
+            System.out.println("JOB TRIGGERED");
 
             jobLauncher.run(employeeJob, params);
 

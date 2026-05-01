@@ -17,7 +17,7 @@ public class JobCompletionListener implements JobExecutionListener {
         this.trackerRepository = trackerRepository;
     }
 
-    //  Called AFTER job completes
+
     @Override
     public void afterJob(JobExecution jobExecution) {
 
@@ -28,7 +28,7 @@ public class JobCompletionListener implements JobExecutionListener {
             throw new RuntimeException("BatchId is missing in job parameters");
         }
 
-        // 🔥 READ DIRECTLY FROM JOB CONTEXT (FINAL FIX)
+
         String successFilePath =
                 jobExecution.getExecutionContext().getString("successFilePath");
 
@@ -53,7 +53,7 @@ public class JobCompletionListener implements JobExecutionListener {
             trackerRepository.save(tracker);
         }
 
-        // 🔥 Delete temp input file
+
         try {
             if (inputFilePath != null) {
                 java.nio.file.Files.deleteIfExists(

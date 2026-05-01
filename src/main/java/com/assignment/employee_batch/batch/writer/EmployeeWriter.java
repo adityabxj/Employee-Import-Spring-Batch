@@ -29,7 +29,6 @@ public class EmployeeWriter implements ItemWriter<EmployeeDto>, StepExecutionLis
         this.repository = repository;
     }
 
-    // ✅ INIT EVERYTHING HERE (IMPORTANT)
     @Override
     public void beforeStep(StepExecution stepExecution) {
         this.stepExecution = stepExecution;

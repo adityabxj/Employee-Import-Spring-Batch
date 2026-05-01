@@ -32,9 +32,10 @@ public class FileUploadController {
 
         if (request.getFileType() == null ||
                 !(request.getFileType().equalsIgnoreCase("csv") ||
-                        request.getFileType().equalsIgnoreCase("xls"))) {
+                        request.getFileType().equalsIgnoreCase("xls") ||
+                        request.getFileType().equalsIgnoreCase("xlsx"))) {
 
-            throw new RuntimeException("Invalid file type. Only csv/xls allowed");
+            throw new RuntimeException("Invalid file type. Only csv/xls/xlsx allowed");
         }
 
         String batchId = fileService.uploadFile(

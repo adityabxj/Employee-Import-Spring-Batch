@@ -41,7 +41,7 @@ public class EmployeeProcessor  implements ItemProcessor<EmployeeDto, EmployeeDt
             return item;
         }
 
-        // 🔁 existing duplicate check
+
         Optional<?> existing = repository.findByEmpId(item.getEmpId());
 
         if (existing.isPresent()) {

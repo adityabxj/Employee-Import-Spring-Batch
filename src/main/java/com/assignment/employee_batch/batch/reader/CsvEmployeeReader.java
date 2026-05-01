@@ -1,6 +1,5 @@
 package com.assignment.employee_batch.batch.reader;
 
-
 import com.assignment.employee_batch.dto.EmployeeDto;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.file.FlatFileItemReader;
@@ -16,19 +15,20 @@ public class CsvEmployeeReader {
 
     @Bean
     @StepScope
-    public FlatFileItemReader<EmployeeDto> reader(
+    public FlatFileItemReader<EmployeeDto> csvReader(
             @Value("#{jobParameters['filePath']}") String filePath) {
+
+        System.out.println("CSV file path: " + filePath);
 
         return new FlatFileItemReaderBuilder<EmployeeDto>()
                 .name("employeeCsvReader")
                 .resource(new FileSystemResource(filePath))
                 .delimited()
-                .names("empId", "name", "email") // must match CSV columns
+                .names("empId", "name", "email")
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
                     setTargetType(EmployeeDto.class);
                 }})
-                .linesToSkip(1) // skip header
+                .linesToSkip(1)
                 .build();
     }
-
 }
