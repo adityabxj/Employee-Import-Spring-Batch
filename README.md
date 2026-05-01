@@ -234,10 +234,3 @@ Tracks:
 * Improve validation with annotations
 
 ---
-
-## 👨‍💻 Author
-
-Vipin Chaurasiya
-Java Developer (Spring Boot + Microservices)
-
----
