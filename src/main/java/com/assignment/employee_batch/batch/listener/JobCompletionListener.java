@@ -35,7 +35,7 @@ public class JobCompletionListener implements JobExecutionListener {
         String errorFilePath =
                 jobExecution.getExecutionContext().getString("errorFilePath");
 
-        // 🔷 Update DB
+
         BatchJobTracker tracker =
                 trackerRepository.findById(batchId).orElse(null);
 

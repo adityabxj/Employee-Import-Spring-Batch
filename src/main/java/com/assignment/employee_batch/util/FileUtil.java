@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class FileUtil {
 
-    // 🔷 Create temp file
+
     public static File createTempFile(byte[] data, String fileType) {
         try {
             File file = File.createTempFile("emp_", "." + fileType);
@@ -17,7 +17,7 @@ public class FileUtil {
         }
     }
 
-    // 🔷 Read file → byte[]
+
     public static byte[] readFile(String path) {
         try {
             return Files.readAllBytes(Paths.get(path));
@@ -26,7 +26,7 @@ public class FileUtil {
         }
     }
 
-    // 🔷 Delete file
+
     public static void deleteFile(String path) {
         try {
             Files.deleteIfExists(Paths.get(path));
